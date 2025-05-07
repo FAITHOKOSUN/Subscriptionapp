@@ -28,7 +28,9 @@ const errorMiddleware = (err, req, res, next) => {
             error: error.message || 'Server Error',
         });
     }catch (error) {
-        error = new Error('An unexpected error occurred');
-        error.statusCode = 500;
-    }
+        next(error);
+    } 
+    
 };
+
+export default errorMiddleware;

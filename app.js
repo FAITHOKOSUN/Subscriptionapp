@@ -6,6 +6,7 @@ import subscriptionRouter from './routes/subscription.routes.js';
 import connectDB from './config/Database/mongodb.js';
 import errorMiddleware from './middleware/error.middleware.js';
 import cookieParser from 'cookie-parser';
+import arcjetMiddleware from './middleware/arcjet.middleware.js';
 
 const app = express();
 
@@ -13,6 +14,8 @@ const app = express();
 app.use(express.json()); // Parses incoming JSON requests
 app.use(express.urlencoded({ extended: false })); // Parses URL-encoded data
 app.use(cookieParser());
+
+app.use(arcjetMiddleware); // Arcjet middleware for security and rate limiting
 
 // Routes
 app.use('/api/v1/auth', authRouter);

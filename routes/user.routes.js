@@ -10,11 +10,6 @@ userRouter.get('/', getUsers);
 userRouter.get('/:id',authorize, getUser);
 //userRouter.post('/', createUser);
 
-
-
-
-
-
 userRouter.put('/:id', (req, res) => {
     res.send({ title: 'update user by id '});
 }

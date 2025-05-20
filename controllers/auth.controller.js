@@ -70,8 +70,18 @@ export const signUp = async (req, res, next) => {
 export const signIn = async (req, res, next) => {
    try {
     const {email, password} = req.body;
+    
+    // Add debugging
+    console.log("Attempting to sign in with email:", email);
+    console.log("Type of email:", typeof email);
+    
+    // Check if there are any users in the database
+    const allUsers = await User.find({});
+    console.log("All users in database:", allUsers.map(u => ({id: u._id, email: u.email})));
+    
     // Check if user exists
     const user = await User.findOne({email});
+    console.log("Found user:", user);
     if (!user) {
         const error = new Error('User not found');
         error.statusCode = 404;
